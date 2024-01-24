@@ -1,0 +1,7 @@
+docker run -it --network=pg-network ubuntu
+
+docker run -it --network=pg-network python_ingest_hw --user=root \
+        --password=root \
+        --host=pgdatabase \
+        --port=5432 \
+        --db=ny_taxi 

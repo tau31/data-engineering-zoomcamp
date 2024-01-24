@@ -1,0 +1,25 @@
+# ingest data
+
+## set up network
+docker network create pg-network
+
+## run docker compose
+
+docker compose up
+
+## run docker contaniner with container sript
+
+docker build  -t python_ingest_hw .
+# note, use service name set in docker compose to interface with its forward ports
+# in this case: pgdatabase
+
+docker run -it --network=pg-network python_ingest_hw --user=root \
+        --password=root \
+        --host=pgdatabase \
+        --port=5432 \
+        --db=ny_taxi \
+        --table_name=green_taxi_data \
+        --taxi_data_url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-09.csv.gz" \
+        --zones_url="https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv" 
+
+# Data base is ready for querying 

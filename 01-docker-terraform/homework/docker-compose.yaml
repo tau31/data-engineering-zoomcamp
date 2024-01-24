@@ -10,3 +10,8 @@ services:
       - ./ny_taxi_data:/var/lib/postgresql/data:rw
     ports:
       - 5432:5432
+networks:
+  default:
+    name: pg-network
+    external: true
+    
